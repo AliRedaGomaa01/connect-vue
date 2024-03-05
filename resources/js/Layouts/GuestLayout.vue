@@ -1,10 +1,13 @@
 <script setup>
 import ApplicationLogo from '@/Components/ApplicationLogo.vue';
+import AppHeader from '@/Layouts/Partials/AppHeader.vue';
+import AppFooter from '@/Layouts/Partials/AppFooter.vue';
 import { Link } from '@inertiajs/vue3';
 </script>
 
 <template>
-    <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
+    <AppHeader />
+    <main class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
         <div>
             <Link href="/">
                 <ApplicationLogo class="w-20 h-20 fill-current text-gray-500" />
@@ -16,5 +19,6 @@ import { Link } from '@inertiajs/vue3';
         >
             <slot />
         </div>
-    </div>
+    </main>
+    <AppFooter />
 </template>

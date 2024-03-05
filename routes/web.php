@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -17,11 +16,13 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
+    return Inertia::render('Unused/MainRoutes', [
+        'routes' => [
+            ['name' => 'login', 'path' => route('login')],
+            ['name' => 'register', 'path' => route('register')], 
+            ['name' => 'dashboard', 'path' => route('dashboard')],
+            ['name' => 'profile', 'path' => route('profile.edit')],
+        ],
     ]);
 });
 

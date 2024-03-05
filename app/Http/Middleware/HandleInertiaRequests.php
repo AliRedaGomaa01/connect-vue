@@ -34,11 +34,14 @@ class HandleInertiaRequests extends Middleware
             ...parent::share($request),
             'auth' => [
                 'user' => $request->user(),
+                'id' => auth()->id(),
+                'check' => auth()->check(),
             ],
             'ziggy' => fn () => [
                 ...(new Ziggy)->toArray(),
                 'location' => $request->url(),
             ],
+            'lang' => app()->currentLocale(),
         ];
     }
 }
