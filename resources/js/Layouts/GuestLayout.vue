@@ -1,24 +1,28 @@
 <script setup>
-import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 import AppHeader from '@/Layouts/Partials/AppHeader.vue';
 import AppFooter from '@/Layouts/Partials/AppFooter.vue';
-import { Link } from '@inertiajs/vue3';
+import { usePage } from '@inertiajs/vue3';
+import { computed } from 'vue';
+let isEn = computed(() => usePage().props.lang == 'en');
+
 </script>
 
 <template>
-    <AppHeader />
-    <main class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
-        <div>
-            <Link href="/">
-                <ApplicationLogo class="w-20 h-20 fill-current text-gray-500" />
-            </Link>
-        </div>
+    <div class="grid min-h-[100vh]" :lang="isEn ? 'en' : 'ar'" :dir="isEn ? 'ltr' : 'rtl'">
+        <header class="grid self-start">
+            <AppHeader />
+        </header>
 
-        <div
-            class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg"
-        >
-            <slot />
-        </div>
-    </main>
-    <AppFooter />
+        <main class="grid items-center self-center p-5 ">
+            <div
+                class="mx-auto my-6 px-6 py-4 bg-white sm:w-[30rem] my-shadow rounded-lg"
+            >
+                <slot />
+            </div>
+        </main>
+
+        <footer class="grid self-end">
+            <AppFooter />
+        </footer>
+    </div>
 </template>

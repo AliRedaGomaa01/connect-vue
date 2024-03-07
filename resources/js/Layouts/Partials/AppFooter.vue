@@ -1,18 +1,14 @@
 <script setup>
 import { Head, Link , usePage } from '@inertiajs/vue3';
-import { watchEffect , computed } from 'vue';
+import { watchEffect , computed, ref } from 'vue';
 let props = defineProps({});
 let isEn = computed(() => usePage().props.lang == 'en');
 let year = new Date().getFullYear();
-let footer = isEn 
-    ? " Designed & Developed & Deployed By Ali Hussein © " + (year)
-    : " تم التصميم والتطوير والاستضافة  بواسطة علي حسين © "  + (year) ;
-watchEffect(() => {
-    
-})
+let footer = computed(() => usePage().props.lang == 'en' ? " Designed & Developed & Deployed By Ali Hussein © " + (year)
+    : " تم التصميم والتطوير والاستضافة  بواسطة علي حسين © "  + (year));
 </script>
 <template>
-    <div class="w-full bg-main h-[4rem] text-center text-white px-10">
+    <div class="w-full bg-main min-h-[4rem] text-center text-white p-5 grid it-ce">
         {{ footer }}
     </div>
 </template>

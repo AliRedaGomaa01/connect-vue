@@ -15,6 +15,9 @@ use Inertia\Inertia;
 |
 */
 
+// middleware lang is applied on all these routes
+require __DIR__.'/auth.php';
+
 Route::get('/', function () {
     return Inertia::render('Unused/MainRoutes', [
         'routes' => [
@@ -24,7 +27,7 @@ Route::get('/', function () {
             ['name' => 'profile', 'path' => route('profile.edit')],
         ],
     ]);
-});
+})->name('landing');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
@@ -35,5 +38,3 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
-require __DIR__.'/auth.php';

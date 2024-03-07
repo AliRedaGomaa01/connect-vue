@@ -16,7 +16,7 @@ export default {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
             colors: {
-                'main': '#000088',
+                'main': '#000000',
             },
         },
     },
