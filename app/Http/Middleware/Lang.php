@@ -16,12 +16,15 @@ class Lang
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if ($request->has('locale') && in_array($request->locale, ['ar','en'])) {
+        if ($request->has('locale')) {
+            $locale = $request->locale;
             session()->put('locale', $request->locale);
-        } 
-        $locale = session()->get('locale') ?? 'en';
-        if (in_array($locale, ['ar','en']) && App::currentLocale() != $locale) {
-            App::setLocale($locale);
+            cache()->put('locale', $request->locale);
+        } else {
+            $locale = cache('locale') ?? session()->get('locale') ?? 'en';
+        }
+        if (in_array($locale, ['ar','en'])) {
+            app()->setLocale($locale);
         } 
         return $next($request);
     }

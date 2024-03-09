@@ -21,7 +21,7 @@ const submit = () => {
 
 <template>
     <GuestLayout>
-        <Head title="Confirm Password" />
+        <Head :title="isEn ? 'Confirm Password':'تأكيد كلمة المرور'" />
 
         <div class="mb-4 text-sm text-gray-600">
            {{ isEn ? 'This is a secure area of the application. Please confirm your password before continuing.': 'هذه منطقة مؤمنة من التطبيق. الرجاء تأكيد كلمة المرور الخاصة بك قبل المتابعة.' }}
@@ -29,7 +29,7 @@ const submit = () => {
 
         <form @submit.prevent="submit">
             <div>
-                <InputLabel for="password" value="Password" />
+                <InputLabel for="password" :value="isEn ? 'Password' : 'كلمة المرور'" />
                 <TextInput
                     id="password"
                     type="password"

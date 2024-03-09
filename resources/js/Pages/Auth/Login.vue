@@ -5,8 +5,9 @@ import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
-import { Head, Link, useForm } from '@inertiajs/vue3';
-
+import { Head, Link, useForm, usePage } from '@inertiajs/vue3';
+import { computed } from 'vue';
+let isEn = computed(() => usePage().props.isEn);
 defineProps({
     canResetPassword: {
         type: Boolean,
@@ -31,7 +32,7 @@ const submit = () => {
 
 <template>
     <GuestLayout>
-        <Head title="Log in" />
+        <Head :title="isEn ? 'Log in' : 'تسجيل الدخول'" />
 
         <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
             {{ status }}
@@ -39,7 +40,7 @@ const submit = () => {
 
         <form @submit.prevent="submit">
             <div>
-                <InputLabel for="email" value="Email" />
+                <InputLabel for="email" :value="isEn ? 'Email' : 'البريد الإلكتروني'" />
 
                 <TextInput
                     id="email"
@@ -55,7 +56,7 @@ const submit = () => {
             </div>
 
             <div class="mt-4">
-                <InputLabel for="password" value="Password" />
+                <InputLabel for="password" :value="isEn ? 'Password' : 'كلمة المرور'" />
 
                 <TextInput
                     id="password"
@@ -72,7 +73,7 @@ const submit = () => {
             <div class="block mt-4">
                 <label class="flex items-center">
                     <Checkbox name="remember" v-model:checked="form.remember" />
-                    <span class="ms-2 text-sm text-gray-600">Remember me</span>
+                    <span class="ms-2 text-sm text-gray-600">{{isEn ? 'Remember me' : 'تذكرني'}}</span>
                 </label>
             </div>
 
@@ -82,11 +83,11 @@ const submit = () => {
                     :href="route('password.request')"
                     class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >
-                    Forgot your password?
+                    {{isEn ? 'Forgot your password?' : 'هل نسيت كلمة المرور؟'}}
                 </Link>
 
                 <PrimaryButton class="ms-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    Log in
+                    {{isEn ? 'Log in' : 'تسجيل الدخول'}}
                 </PrimaryButton>
             </div>
         </form>

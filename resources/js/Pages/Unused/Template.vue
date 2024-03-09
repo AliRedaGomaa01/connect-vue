@@ -1,7 +1,7 @@
 <!-- **************
 ******* vue template
 ************ -->
-<!-- <script setup>
+<script setup>
 import { Head, Link } from '@inertiajs/vue3';
 import { watchEffect } from 'vue';
 let props = defineProps({});
@@ -13,7 +13,7 @@ watchEffect(() => {
     <Head title=""/>
 </template>
 <style>
-</style> -->
+</style>
 
 <!-- **************
 ******* lang tempate 

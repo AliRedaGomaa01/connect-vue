@@ -15,7 +15,7 @@ let isEn = computed(() => usePage().props.lang == 'en');
         </header>
 
         <main class="grid items-center self-center p-5 ">
-            <div class="" >
+            <div class="grid it-ce" >
                 <slot />
             </div>
         </main>

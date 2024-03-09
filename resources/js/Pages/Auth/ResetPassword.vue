@@ -4,7 +4,10 @@ import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
-import { Head, useForm } from '@inertiajs/vue3';
+import { Head, useForm, usePage } from '@inertiajs/vue3';
+import { computed } from 'vue';
+let isEn = computed(() => usePage().props.isEn);
+
 
 const props = defineProps({
     email: {
@@ -33,11 +36,11 @@ const submit = () => {
 
 <template>
     <GuestLayout>
-        <Head title="Reset Password" />
+        <Head :title="isEn ? 'Reset Password':'اعادة تعيين كلمة المرور'" />
 
         <form @submit.prevent="submit">
             <div>
-                <InputLabel for="email" value="Email" />
+                <InputLabel for="email" :value="isEn ? 'Email' : 'البريد الإلكتروني' " />
 
                 <TextInput
                     id="email"
@@ -53,7 +56,7 @@ const submit = () => {
             </div>
 
             <div class="mt-4">
-                <InputLabel for="password" value="Password" />
+                <InputLabel for="password"  :value="isEn ? 'Password' : 'كلمة المرور' " />
 
                 <TextInput
                     id="password"
@@ -68,7 +71,7 @@ const submit = () => {
             </div>
 
             <div class="mt-4">
-                <InputLabel for="password_confirmation" value="Confirm Password" />
+                <InputLabel for="password_confirmation" :value="isEn ? 'Confirm Password' : 'تأكيد كلمة المرور' " />
 
                 <TextInput
                     id="password_confirmation"
@@ -84,7 +87,7 @@ const submit = () => {
 
             <div class="flex items-center justify-end mt-4">
                 <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    Reset Password
+                    {{ isEn ? 'Reset Password' : 'اعادة تعيين كلمة المرور' }}
                 </PrimaryButton>
             </div>
         </form>

@@ -16,6 +16,7 @@ use Inertia\Inertia;
 */
 
 // middleware lang is applied on all these routes
+
 require __DIR__.'/auth.php';
 
 Route::get('/', function () {
