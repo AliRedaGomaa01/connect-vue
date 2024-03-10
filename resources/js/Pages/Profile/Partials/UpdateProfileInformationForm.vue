@@ -16,11 +16,15 @@ defineProps({
     },
 });
 
+
+
 const user = usePage().props.auth.user;
 
 const form = useForm({
     name: user.name,
     email: user.email,
+    bio: user.bio,
+    cv: user.cv,
 });
 </script>
 
@@ -35,6 +39,7 @@ const form = useForm({
         </header>
 
         <form @submit.prevent="form.patch(route('profile.update'))" class="mt-6 space-y-6">
+            <!-- name -->
             <div>
                 <InputLabel for="name" :value="isEn ? 'Name' : 'الاسم'" />
 
@@ -50,7 +55,7 @@ const form = useForm({
 
                 <InputError class="mt-2" :message="form.errors.name" />
             </div>
-
+            <!-- email -->
             <div>
                 <InputLabel for="email" :value="isEn ? 'Email' : 'الإيميل'" />
 
@@ -65,7 +70,30 @@ const form = useForm({
 
                 <InputError class="mt-2" :message="form.errors.email" />
             </div>
+            <!-- Bio -->
+            <div>
+                <InputLabel for="bio" :value="isEn ? 'Bio' : 'نبذة عنك'" />
 
+                <textarea name="bio" id="bio"  class="mt-1 block w-full" v-model="form.bio" rows="10" cols="30" autocomplete="bio" required></textarea>
+
+                <InputError class="mt-2" :message="form.errors.bio" />
+            </div>
+            <!-- CV Link -->
+            <div>
+                <InputLabel for="cv" :value="isEn ? 'CV Link' : 'رابط السيرة الذاتية'" />
+
+                <TextInput
+                    id="cv"
+                    type="text"
+                    class="mt-1 block w-full"
+                    v-model="form.cv"
+                    required
+                    autofocus
+                    autocomplete="cv"
+                />
+
+                <InputError class="mt-2" :message="form.errors.cv" />
+            </div>
             <div v-if="mustVerifyEmail && user.email_verified_at === null">
                 <p class="text-sm mt-2 text-gray-800">
                     {{isEn ? 'Your email address is unverified.' : 'بريدك الإلكتروني لم يتم التحقق منه.'}}

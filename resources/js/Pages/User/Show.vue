@@ -1,6 +1,3 @@
-<!-- **************
-******* vue template
-************ -->
 <script setup>
 import { Head, Link, usePage } from '@inertiajs/vue3';
 import { computed } from 'vue';
@@ -21,8 +18,3 @@ let props = defineProps({});
 </template>
 <style>
 </style>
-
-<!-- **************
-******* lang tempate 
-************ -->
-
