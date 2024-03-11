@@ -27,6 +27,7 @@ Route::get('/', function () {
             ['name' => 'register', 'path' => route('register')], 
             ['name' => 'dashboard', 'path' => route('dashboard')],
             ['name' => 'profile', 'path' => route('profile.edit')],
+            ['name' => 'users', 'path' => route('user.index')],
         ],
     ]);
 })->name('landing');
@@ -42,7 +43,8 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::controller(UserController::class)->group(function(){
-    Route::get('/users', 'index')->name('users.index');
-    Route::get('/users/search', 'search')->name('users.search');
-    Route::get('/users/{user}', 'show')->name('users.show');
+    Route::get('/users', 'index')->name('user.index');
+    Route::get('/users/search', 'search')->name('user.search');
+    Route::get('/users/{user}', 'show')->name('user.show');
+    Route::post('/users/search', 'searchResult')->name('user.result');
 });

@@ -12,6 +12,19 @@ class UserController extends Controller
      */
     public function search()
     {
+        $searchable = User::pluck('email','name')->toArray();
+        return inertia('User/Search', compact('searchable'));
+    }
+
+    /**
+     * get the searching result
+     */
+    public function searchResult(Request $request)
+    {
+        $searchable = User::pluck('email','name')->toArray();
+        $validated = $request->validate(['search' => 'required']);
+        $users = User::where('email', 'like', '%' . $validated['search'] . '%')->orWhere('name', 'like', '%' . $validated['search'] . '%')->paginate(15)->toArray();
+        return inertia('User/Search', compact('searchable','users'));
     }
 
     /**
@@ -19,8 +32,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::paginate(2)->toArray();
-        // dd($users);
+        $users = User::paginate(15)->toArray();
         return inertia('User/Index', ['users' => $users]);
     }
 
@@ -45,7 +57,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        return inertia('User/Show', ['user' => $user]);
     }
 
     /**

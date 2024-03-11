@@ -12,7 +12,8 @@ watchEffect(() => {
 })
 </script>
 <template>
-    <div class="w-full py-2 grid grid-cols-2 sm:grid-cols-4 it-ce shadow-[0px_3px_6px_6px_rgb(0,0,0,0.1)]">
+    <!-- main nav -->
+    <div class="w-full py-4 grid grid-cols-2 sm:grid-cols-4 it-ce shadow-[0px_3px_6px_0px_rgb(0,0,0,0.1)]">
         <Link :href="langRoute" class="mx-auto" >{{ isEn ? "عربي" : "English"  }}</Link>
         <Link :href="route('login')+'?locale='+currentLang" class="mx-auto" :class="currentRouteName == 'login' ? 'active' : ''" v-if="!isAuthenticated">{{ isEn ? "Login" : "تسجيل الدخول"  }}</Link>
         <Link :href="route('register')+'?locale='+currentLang" class="mx-auto" :class="currentRouteName == 'register' ? 'active' : ''" v-if="!isAuthenticated">{{ isEn ?  "Register" : "تسجيل جديد" }}</Link>
@@ -20,5 +21,10 @@ watchEffect(() => {
         <Link :href="route('dashboard')+'?locale='+currentLang" class="mx-auto" :class="currentRouteName == 'dashboard' ? 'active' : ''" v-if="isAuthenticated">{{ isEn ? "Dashboard" : "الداشبورد"  }}</Link>
         <Link :href="route('profile.edit')+'?locale='+currentLang" class="mx-auto" :class="currentRouteName == 'profile.edit' ? 'active' : ''" v-if="isAuthenticated">{{ isEn ? "Profile" : "الملف الشخصي"  }}</Link>
         <Link :href="route('logout')" method="post" as="button" class="mx-auto" v-if="isAuthenticated">{{ isEn ? "Logout" : "تسجيل الخروج"  }}</Link>
+    </div>
+
+    <div class="w-full py-4 grid grid-cols-2 sm:grid-cols-4 it-ce shadow-[0px_3px_6px_0px_rgb(0,0,0,0.1)]">
+        <Link :href="route('user.search')" class="mx-auto" :class="currentRouteName == 'user.search' ? 'active' : ''" v-if="isAuthenticated">{{ isEn ? "Search Page" : "صفحة البحث"  }}</Link>
+        <Link :href="route('user.index')" class="mx-auto" :class="currentRouteName == 'user.index' ? 'active' : ''" v-if="isAuthenticated">{{ isEn ? "All Users" : "جميع المستخدمين"  }}</Link>
     </div>
 </template>
