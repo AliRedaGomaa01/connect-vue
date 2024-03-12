@@ -1,1 +1,0 @@
-import{c as a,o,a as s,u as t,Q as r,Z as p}from"./app-1T2E2gxX.js";import{_ as n}from"./AuthenticatedLayout-Bdepb0ef.js";import"./AppFooter-C-Bov8RA.js";const f=Object.assign({layout:n},{__name:"Template",props:{},setup(c){let e=a(()=>r().props.lang=="en");return(l,_)=>(o(),s(t(p),{title:(t(e),"")},null,8,["title"]))}});export{f as default};
