@@ -1,0 +1,1 @@
+import{C as e,o,g as t,b as a,u as s,F as c,d as n,Z as r}from"./app-1T2E2gxX.js";const l=n("p",{class:"text-6xl"},"Coming soon",-1),f={__name:"ComingSoon",props:{},setup(_){return e(()=>{}),(m,p)=>(o(),t(c,null,[a(s(r),{title:"Welcome"}),l],64))}};export{f as default};
