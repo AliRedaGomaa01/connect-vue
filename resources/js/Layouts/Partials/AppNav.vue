@@ -5,6 +5,7 @@ let isEn = computed(() => usePage().props.lang == 'en');
 let currentLang = computed(() => usePage().props.lang );
 let isAuthenticated = computed(() => usePage().props.auth.check);
 let currentRouteName = computed(() => usePage().props.routeName);
+let currentRouteUrl = computed(() => usePage().props.routeUrl);
 let langRoute = computed(() => usePage().props.langRoute);
 let props = defineProps({});
 watchEffect(() => {
@@ -24,7 +25,11 @@ watchEffect(() => {
     </div>
 
     <div class="w-full py-4 grid grid-cols-2 sm:grid-cols-4 it-ce shadow-[0px_3px_6px_0px_rgb(0,0,0,0.1)]">
-        <Link :href="route('user.search')" class="mx-auto" :class="currentRouteName == 'user.search' ? 'active' : ''" v-if="isAuthenticated">{{ isEn ? "Search Page" : "صفحة البحث"  }}</Link>
+        <Link :href="route('user.show',$page.props.auth.id)" class="mx-auto" :class="currentRouteUrl == route('user.show',$page.props.auth.id) ? 'active' : ''" v-if="isAuthenticated">{{ isEn ? "Your Page" : "صفحتك الشخصية"  }}</Link>
+        <Link :href="route('user.search')" class="mx-auto" :class="currentRouteName == 'user.search' || currentRouteName == 'user.result' ? 'active' : ''" v-if="isAuthenticated">{{ isEn ? "Search Page" : "صفحة البحث"  }}</Link>
         <Link :href="route('user.index')" class="mx-auto" :class="currentRouteName == 'user.index' ? 'active' : ''" v-if="isAuthenticated">{{ isEn ? "All Users" : "جميع المستخدمين"  }}</Link>
+        <Link :href="route('user.following')" class="mx-auto" 
+        :class="currentRouteName == 'user.following'? 'active' : ''" 
+        v-if="isAuthenticated">{{ isEn ? "Followed Users" : "مستخدمين تتابعهم"  }}</Link>
     </div>
 </template>

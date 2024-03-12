@@ -44,4 +44,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    # Relations 
+    public function following(){
+        return $this->belongsToMany(User::class, 'follows', 'following_id', 'followed_id');
+    }
+    public function followedBy(){
+        return $this->belongsToMany(User::class, 'follows', 'followed_id', 'following_id');
+    }
+    public function isFollowing( $followed_id){
+        return $this->following()->where('followed_id', $followed_id)->count() > 0;
+    }
+
 }

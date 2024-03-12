@@ -31,6 +31,10 @@
         @apply w-[80vw] sm:w-[70vw] md:w-[60vw] mx-auto grid gap-4
     }
 
+    .center-container {
+        @apply w-[90%] justify-self-center
+    }
+
     .active {
         @apply px-4 py-2 bg-main rounded-xl text-white
     }

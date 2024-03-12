@@ -44,7 +44,8 @@ class HandleInertiaRequests extends Middleware
             'lang' => app()->currentLocale(),
             'isEn' => app()->isLocale('en'),
             'langRoute' =>  app()->isLocale('ar') ?  $request->url().'?locale='.'en' : $request->url().'?locale='.'ar'  ,
-            'routeName' => $request->route() ? $request->route()->getName() : null
+            'routeName' => $request->route() ? $request->route()->getName() : null,
+            'routeUrl' => $request->url(),
         ];
     }
 }

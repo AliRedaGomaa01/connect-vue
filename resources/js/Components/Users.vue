@@ -27,7 +27,7 @@ let contentClasses = "p-10";
             <p :class='contentClasses'>{{user['name']}}</p>
             <h3>{{ $page.props.isEn? 'Email' : 'الإيميل'}}</h3>
             <p :class='contentClasses'>{{user['email']}}</p>
-            <a :href="route('user.show',user.id)" class="underline justify-self-center" :class='contentClasses'><PrimaryButton class="">{{$page.props.isEn? 'Show' : 'اعرض'}}</PrimaryButton></a>
+            <Link :href="route('user.show',user.id)" class="underline justify-self-center" :class='contentClasses'><PrimaryButton class="">{{$page.props.isEn? 'Show' : 'اعرض'}}</PrimaryButton></Link>
         </div>
         <!-- buttons -->
         <div class="grid grid-cols-3 it-ce w-full my-10 " v-if="props.users.last_page !== 1">

@@ -28,6 +28,14 @@ class UserController extends Controller
     }
 
     /**
+     * get the followed users page
+     */
+    public function following()
+    {
+        $users = auth()->user()->following()->paginate(15)->toArray();
+        return inertia('User/Index', ['users' => $users]);
+    }
+    /**
      * Display a listing of the resource.
      */
     public function index()
@@ -57,7 +65,9 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return inertia('User/Show', ['user' => $user]);
+        $user->isFollowed = auth()->user()->isFollowing($user->id);
+        $user->followedCount = $user->followedBy()->count();
+        return inertia('User/Show', ['user' => $user ]);
     }
 
     /**

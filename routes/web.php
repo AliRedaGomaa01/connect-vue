@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FollowController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -44,7 +45,10 @@ Route::middleware('auth')->group(function () {
 
 Route::controller(UserController::class)->group(function(){
     Route::get('/users', 'index')->name('user.index');
+    Route::get('/users/following', 'following')->name('user.following');
     Route::get('/users/search', 'search')->name('user.search');
     Route::get('/users/{user}', 'show')->name('user.show');
     Route::post('/users/search', 'searchResult')->name('user.result');
 });
+
+Route::post('/toggle-follow', FollowController::class)->name('follow.toggle');
