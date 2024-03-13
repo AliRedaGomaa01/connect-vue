@@ -8,6 +8,7 @@ let footer = computed(() => usePage().props.lang == 'en' ? " Designed & Develope
     : " تم التصميم والتطوير والاستضافة  بواسطة علي حسين © "  + (year));
 </script>
 <template>
+    <div class="my-5"></div> 
     <div class="w-full bg-main min-h-[4rem] text-center text-white p-5 grid it-ce">
         {{ footer }}
     </div>

@@ -46,6 +46,7 @@ class User extends Authenticatable
     ];
 
     # Relations 
+    // follow model
     public function following(){
         return $this->belongsToMany(User::class, 'follows', 'following_id', 'followed_id');
     }
@@ -54,6 +55,10 @@ class User extends Authenticatable
     }
     public function isFollowing( $followed_id){
         return $this->following()->where('followed_id', $followed_id)->count() > 0;
+    }
+    // photo model
+    public function photos(){
+        return $this->hasMany(Photo::class);
     }
 
 }

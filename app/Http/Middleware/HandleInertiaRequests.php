@@ -37,6 +37,10 @@ class HandleInertiaRequests extends Middleware
                 'id' => auth()->id(),
                 'check' => auth()->check(),
             ],
+            'appUrl' => asset('/'),
+            'flash' => [
+                'success' => session('success'),
+            ],
             'ziggy' => fn () => [
                 ...(new Ziggy)->toArray(),
                 'location' => $request->url(),

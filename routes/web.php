@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\FollowController;
+use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -50,5 +51,7 @@ Route::controller(UserController::class)->group(function(){
     Route::get('/users/{user}', 'show')->name('user.show');
     Route::post('/users/search', 'searchResult')->name('user.result');
 });
+
+Route::resource('photos', PhotoController::class)->only(['index', 'create', 'store','show','destroy']);
 
 Route::post('/toggle-follow', FollowController::class)->name('follow.toggle');

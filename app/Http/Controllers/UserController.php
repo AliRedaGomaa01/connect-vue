@@ -65,6 +65,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
+        $user->load('photos');
         $user->isFollowed = auth()->user()->isFollowing($user->id);
         $user->followedCount = $user->followedBy()->count();
         return inertia('User/Show', ['user' => $user ]);

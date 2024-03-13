@@ -19,4 +19,5 @@ let showNav = ref(true);
         </div>
     </div>
     <AppNav v-show="showNav" />
+    <div class="my-5"></div> 
 </template>
