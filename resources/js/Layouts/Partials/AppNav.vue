@@ -8,6 +8,7 @@ let currentRouteName = computed(() => usePage().props.routeName);
 let currentRouteUrl = computed(() => usePage().props.routeUrl);
 let langRoute = computed(() => usePage().props.langRoute);
 let props = defineProps({});
+let navClasses = '';
 watchEffect(() => {
     
 })
@@ -15,20 +16,20 @@ watchEffect(() => {
 <template>
     <!-- main nav -->
     <div class="w-full py-4 grid grid-cols-2 sm:grid-cols-4 it-ce shadow-[0px_3px_6px_0px_rgb(0,0,0,0.1)]">
-        <Link :href="langRoute" class="mx-auto" >{{ isEn ? "عربي" : "English"  }}</Link>
-        <Link :href="route('login')+'?locale='+currentLang" class="mx-auto" :class="currentRouteName == 'login' ? 'active' : ''" v-if="!isAuthenticated">{{ isEn ? "Login" : "تسجيل الدخول"  }}</Link>
-        <Link :href="route('register')+'?locale='+currentLang" class="mx-auto" :class="currentRouteName == 'register' ? 'active' : ''" v-if="!isAuthenticated">{{ isEn ?  "Register" : "تسجيل جديد" }}</Link>
-        <Link :href="route('landing')+'?locale='+currentLang" class="mx-auto" :class="currentRouteName == 'landing' ? 'active' : ''" v-if="!isAuthenticated">{{ isEn ? "Home" : "الرئيسية"  }}</Link>
-        <Link :href="route('dashboard')+'?locale='+currentLang" class="mx-auto" :class="currentRouteName == 'dashboard' ? 'active' : ''" v-if="isAuthenticated">{{ isEn ? "Dashboard" : "الداشبورد"  }}</Link>
-        <Link :href="route('profile.edit')+'?locale='+currentLang" class="mx-auto" :class="currentRouteName == 'profile.edit' ? 'active' : ''" v-if="isAuthenticated">{{ isEn ? "Profile" : "الملف الشخصي"  }}</Link>
-        <Link :href="route('logout')" method="post" as="button" class="mx-auto" v-if="isAuthenticated">{{ isEn ? "Logout" : "تسجيل الخروج"  }}</Link>
+        <Link :href="langRoute" class="nav-item" >{{ isEn ? "عربي" : "English"  }}</Link>
+        <Link :href="route('login')+'?locale='+currentLang" class="nav-item" :class="currentRouteName == 'login' ? 'active' : ''" v-if="!isAuthenticated">{{ isEn ? "Login" : "تسجيل الدخول"  }}</Link>
+        <Link :href="route('register')+'?locale='+currentLang" class="nav-item" :class="currentRouteName == 'register' ? 'active' : ''" v-if="!isAuthenticated">{{ isEn ?  "Register" : "تسجيل جديد" }}</Link>
+        <Link :href="route('landing')+'?locale='+currentLang" class="nav-item" :class="currentRouteName == 'landing' ? 'active' : ''" v-if="!isAuthenticated">{{ isEn ? "Home" : "الرئيسية"  }}</Link>
+        <Link :href="route('dashboard')+'?locale='+currentLang" class="nav-item" :class="currentRouteName == 'dashboard' ? 'active' : ''" v-if="isAuthenticated">{{ isEn ? "Dashboard" : "الداشبورد"  }}</Link>
+        <Link :href="route('profile.edit')+'?locale='+currentLang" class="nav-item" :class="currentRouteName == 'profile.edit' ? 'active' : ''" v-if="isAuthenticated">{{ isEn ? "Profile" : "الملف الشخصي"  }}</Link>
+        <Link :href="route('logout')" method="post" as="button" class="nav-item" v-if="isAuthenticated">{{ isEn ? "Logout" : "تسجيل الخروج"  }}</Link>
     </div>
 
     <div class="w-full py-4 grid grid-cols-2 sm:grid-cols-4 it-ce shadow-[0px_3px_6px_0px_rgb(0,0,0,0.1)]">
-        <Link :href="route('user.show',$page.props.auth.id)" class="mx-auto" :class="currentRouteUrl == route('user.show',$page.props.auth.id) ? 'active' : ''" v-if="isAuthenticated">{{ isEn ? "Your Page" : "صفحتك الشخصية"  }}</Link>
-        <Link :href="route('user.search')" class="mx-auto" :class="currentRouteName == 'user.search' || currentRouteName == 'user.result' ? 'active' : ''" v-if="isAuthenticated">{{ isEn ? "Search Page" : "صفحة البحث"  }}</Link>
-        <Link :href="route('user.index')" class="mx-auto" :class="currentRouteName == 'user.index' ? 'active' : ''" v-if="isAuthenticated">{{ isEn ? "All Users" : "جميع المستخدمين"  }}</Link>
-        <Link :href="route('user.following')" class="mx-auto" 
+        <Link :href="route('user.show',$page.props.auth.id)" class="nav-item" :class="currentRouteUrl == route('user.show',$page.props.auth.id) ? 'active' : ''" v-if="isAuthenticated">{{ isEn ? "Your Page" : "صفحتك الشخصية"  }}</Link>
+        <Link :href="route('user.search')" class="nav-item" :class="currentRouteName == 'user.search' || currentRouteName == 'user.result' ? 'active' : ''" v-if="isAuthenticated">{{ isEn ? "Search Page" : "صفحة البحث"  }}</Link>
+        <Link :href="route('user.index')" class="nav-item" :class="currentRouteName == 'user.index' ? 'active' : ''" v-if="isAuthenticated">{{ isEn ? "All Users" : "جميع المستخدمين"  }}</Link>
+        <Link :href="route('user.following')" class="nav-item" 
         :class="currentRouteName == 'user.following'? 'active' : ''" 
         v-if="isAuthenticated">{{ isEn ? "Followed Users" : "مستخدمين تتابعهم"  }}</Link>
     </div>

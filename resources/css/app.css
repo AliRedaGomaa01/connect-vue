@@ -35,8 +35,12 @@
         @apply w-[90%] justify-self-center
     }
 
+    .nav-item {
+        @apply px-4 py-2 
+    }
+
     .active {
-        @apply px-4 py-2 bg-main rounded-xl text-white
+        @apply bg-main rounded-xl text-white
     }
 
 }
