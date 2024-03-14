@@ -57,7 +57,7 @@ let toggleLike = (id) => {
                 <PrimaryButton class="bg-red-600" @click="deleteFn(work.id)" >{{ isEn ? "Delete" : "حذف"  }}</PrimaryButton>  
             </div>
         </div>
-        <div class="grid">
+        <div class="grid" v-if="$page.props.auth.id != work.user_id">
             <PrimaryButton v-if="!work.isLiked" class=" justify-self-center text-[1.5em]" @click="toggleLike(work.id)"><img :src="$page.props.appUrl + 'app-assets/icons/likes.svg'" alt="like icon" width="20px"> &nbsp; &nbsp; &nbsp; {{work.likesCount}}</PrimaryButton>
             <PrimaryButton v-if="work.isLiked" class="bg-red-600 justify-self-center text-[1.5em]" @click="toggleLike(work.id)"><img :src="$page.props.appUrl + 'app-assets/icons/dislike.svg'" alt="like icon" width="20px"> &nbsp; &nbsp; &nbsp; {{work.likesCount}}</PrimaryButton>
         </div>
