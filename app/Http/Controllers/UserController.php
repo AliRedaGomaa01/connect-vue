@@ -68,6 +68,8 @@ class UserController extends Controller
         $user->load('photos');
         $user->isFollowed = auth()->user()->isFollowing($user->id);
         $user->followedCount = $user->followedBy()->count();
+
+        $user->works = $user->works()->paginate(15)->toArray();
         return inertia('User/Show', ['user' => $user ]);
     }
 

@@ -6,7 +6,7 @@ let isEn = computed(() => usePage().props.isEn);
 let props = defineProps({
     users:
     {
-        type:Object,
+        type:Array,
         required:true,
         default: {}
     }

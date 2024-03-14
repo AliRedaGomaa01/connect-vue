@@ -34,13 +34,19 @@ watchEffect(() => {
         <Link :href="route('logout')" method="post" as="button" class="nav-item" v-if="isAuthenticated">{{ isEn ? "Logout" : "تسجيل الخروج"  }}</Link>
     </div>
 
-    <div class="w-full py-4 grid grid-cols-2 sm:grid-cols-4 it-ce shadow-[0px_3px_6px_0px_rgb(0,0,0,0.1)] text-center">
+    <div class="w-full py-4 grid grid-cols-1 sm:grid-cols-3 it-ce shadow-[0px_3px_6px_0px_rgb(0,0,0,0.1)] text-center">
         <Link :href="route('user.show',$page.props.auth.id)" class="nav-item" :class="currentRouteUrl == route('user.show',$page.props.auth.id) ? 'active' : ''" v-if="isAuthenticated">{{ isEn ? "Your Page" : "صفحتك الشخصية"  }}</Link>
         <Link :href="route('user.search')" class="nav-item" :class="currentRouteName == 'user.search' || currentRouteName == 'user.result' ? 'active' : ''" v-if="isAuthenticated">{{ isEn ? "Search Page" : "صفحة البحث"  }}</Link>
         <Link :href="route('user.index')" class="nav-item" :class="currentRouteName == 'user.index' ? 'active' : ''" v-if="isAuthenticated">{{ isEn ? "All Users" : "جميع المستخدمين"  }}</Link>
+    </div >
+
+    <div class="w-full py-4 grid grid-cols-1 sm:grid-cols-2 it-ce shadow-[0px_3px_6px_0px_rgb(0,0,0,0.1)] text-center">
         <Link :href="route('user.following')" class="nav-item" 
         :class="currentRouteName == 'user.following'? 'active' : ''" 
         v-if="isAuthenticated">{{ isEn ? "Followed Users" : "مستخدمين تتابعهم"  }}</Link>
+        <Link :href="route('works.index')" class="nav-item" 
+        :class="currentRouteName == 'works.index'? 'active' : ''" 
+        v-if="isAuthenticated">{{ isEn ? "Followed Works" : "أعمال تتابعها"  }}</Link>
     </div >
     
     <div class="w-full py-4 grid it-ce bg-green-400 text-center" v-if="showFlash">

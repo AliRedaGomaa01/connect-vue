@@ -13,7 +13,11 @@ class WorkController extends Controller
      */
     public function index()
     {
-        //
+        $following = auth()->user()->following?->pluck('id')?->toArray();
+        $works = Work::whereIn('user_id',$following)->paginate(15)->toArray();
+        return inertia('Work/Index', [
+            'works' => $works
+        ]);
     }
 
     /**
@@ -49,7 +53,9 @@ class WorkController extends Controller
      */
     public function show(Work $work)
     {
-        //
+        return inertia('Work/Show', [
+            'work' => $work
+        ]);
     }
 
     /**
@@ -57,7 +63,10 @@ class WorkController extends Controller
      */
     public function edit(Work $work)
     {
-        //
+        return inertia('Work/Edit', [
+            'work' => $work,
+            'types' => WorkTypesEnum::toArray(),
+        ]);
     }
 
     /**
@@ -65,7 +74,17 @@ class WorkController extends Controller
      */
     public function update(Request $request, Work $work)
     {
-        //
+        $types= implode(',',array_keys(WorkTypesEnum::toArray())); 
+        $validated = $request->validate([
+            'type' => ['required',"in:{$types}",'string','max:255'],
+            'category' => ['required','string','max:255'],
+            'title' => ['required','string','max:255'],
+            'description' => ['required','string','max:1023'],
+            'url' => ['required','string','max:255','url:https'],
+        ]);
+        unset($validated['type']);
+        $work->update($validated);
+        return redirect()->back()->with('success', __('Updated Successfully'));
     }
 
     /**
@@ -73,6 +92,7 @@ class WorkController extends Controller
      */
     public function destroy(Work $work)
     {
-        //
+        $work->delete();
+        return redirect()->route('user.show',auth()->id())->with('success', __('Deleted Successfully'));
     }
 }
