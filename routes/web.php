@@ -1,12 +1,13 @@
 <?php
 
-use App\Http\Controllers\FollowController;
-use App\Http\Controllers\PhotoController;
-use App\Http\Controllers\ProfileController;
+use Inertia\Inertia;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WorkController;
-use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
+use App\Http\Controllers\PhotoController;
+use App\Http\Controllers\FollowController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,6 +58,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('works', WorkController::class);
 
     Route::post('/toggle-follow', FollowController::class)->name('follow.toggle');
+    Route::post('/toggle-like', LikeController::class)->name('like.toggle');
 });
 
 

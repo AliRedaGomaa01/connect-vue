@@ -64,4 +64,7 @@ class User extends Authenticatable
         return $this->hasMany(Work::class,'user_id','id');
     }
 
+    public function likes(){
+        return $this->hasMany(Like::class,'user_id','id');
+    }
 }

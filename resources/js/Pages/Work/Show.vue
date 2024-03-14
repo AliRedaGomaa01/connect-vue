@@ -18,6 +18,16 @@ let deleteFn = (id) => {
         router.delete(route('works.destroy',id))
     }
 }
+// toggle like
+let toggleLike = (id) => {
+    router.post(route('like.toggle'),{
+        id:id,
+        type: 'work'
+    },{
+        replace: true,
+        preserveScroll: true,
+    })
+}
 
 </script>
 <template>
@@ -46,6 +56,10 @@ let deleteFn = (id) => {
                 </Link>
                 <PrimaryButton class="bg-red-600" @click="deleteFn(work.id)" >{{ isEn ? "Delete" : "حذف"  }}</PrimaryButton>  
             </div>
+        </div>
+        <div class="grid">
+            <PrimaryButton v-if="!work.isLiked" class=" justify-self-center text-[1.5em]" @click="toggleLike(work.id)"><img :src="$page.props.appUrl + 'app-assets/icons/likes.svg'" alt="like icon" width="20px"> &nbsp; &nbsp; &nbsp; {{work.likesCount}}</PrimaryButton>
+            <PrimaryButton v-if="work.isLiked" class="bg-red-600 justify-self-center text-[1.5em]" @click="toggleLike(work.id)"><img :src="$page.props.appUrl + 'app-assets/icons/dislike.svg'" alt="like icon" width="20px"> &nbsp; &nbsp; &nbsp; {{work.likesCount}}</PrimaryButton>
         </div>
     </div>
 </template>

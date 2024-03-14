@@ -45,6 +45,8 @@ class PhotoController extends Controller
      */
     public function show(Photo $photo)
     {
+        $photo->isLiked = $photo->likes()->where('user_id', auth()->id())->count() > 0;
+        $photo->likesCount = $photo->likes()->count();
         return inertia('Photo/Show',['photo' => $photo]);
     }
 

@@ -53,6 +53,8 @@ class WorkController extends Controller
      */
     public function show(Work $work)
     {
+        $work->isLiked = $work->likes()->where('user_id', auth()->id())->count() > 0;
+        $work->likesCount = $work->likes()->count();
         return inertia('Work/Show', [
             'work' => $work
         ]);

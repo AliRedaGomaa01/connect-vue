@@ -107,7 +107,7 @@ let current = ref('main info');
         <div class="grid gap-10" v-if="current == 'works' ">
             <PrimaryButton class=" justify-self-center"  v-if="$page.props.auth.id == props.user.id"> <Link :href="route('works.create')">{{ $page.props.isEn ? "Add A New Work" : "أضف عمل جديدة"}}</Link> </PrimaryButton>
             <Works :works="props.user.works"></Works>
-            <div class="container grid grid-cols-1 my-shadow p-5 rounded-xl it-ce" v-if="!props.user.works">{{ $page.props.isEn ? "No works" : "لا أعمال" }}</div>
+            <div class="container grid grid-cols-1 my-shadow p-5 rounded-xl it-ce" v-if="props.user.works.data == false">{{ $page.props.isEn ? "No works" : "لا أعمال" }}</div>
         </div>
         <!-- Photos -->
         <div class="grid gap-10" v-if="current == 'photos' ">
