@@ -9,7 +9,7 @@
     h3 {
         @apply text-xl font-[400];
     }
-    input[name], input[type], textarea[name], select[name] {
+    input[name], input[type], textarea[cols], select[name] {
         @apply border-2 border-main outline-main rounded-lg
     }
 }

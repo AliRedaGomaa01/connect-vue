@@ -20,6 +20,8 @@ let trans = reactive({
     'main info':'المعلومات الأساسية',
     'photos':'الصور',
     'works':'الأعمال',
+    "No photos" : "لا توجد صور" ,
+    "Delete" : "حذف",
     },
     en : {
     'title':'User',
@@ -33,6 +35,8 @@ let trans = reactive({
     'main info':'Main Info',
     'photos':'Photos',
     'works':'Works',
+    "No photos" : "No photos",
+    "Delete" : "Delete"
     }
 });
 let lang = computed(() => usePage().props.lang);
@@ -58,13 +62,7 @@ let toggleFollow = () => {
 }
 // navigation 
 let current = ref('main info');
-// delete photo
-let deleteFn = (id) => {
-    if(confirm(usePage().props.isEn ? 'Are you sure you want to delete this photo?' : 'هل أنت متاكد من حذف هذه الصورة؟')){
-        router.delete(route('photos.destroy',id))
-    }
 
-}
 </script>
 <template>
     <Head :title="trans[lang]['title']"/>
@@ -101,14 +99,18 @@ let deleteFn = (id) => {
             <PrimaryButton class="bg-red-600 justify-self-center" @click="toggleFollow()" v-if="!showFollowBtn">{{ trans[lang]['unfollow'] }}</PrimaryButton>
         </div>
     </div>
-
-    <div class="" v-if="current == 'photos' && props.user.photos">
-        <div class="container grid grid-cols-1 sm:grid-cols-3 ">
+    <!-- Photos -->
+    <div class="grid" v-if="current == 'photos' ">
+        <PrimaryButton class=" justify-self-center my-5"  v-if="$page.props.auth.id == props.user.id"> <Link :href="route('photos.create')">{{ $page.props.isEn ? "Add A New Photo" : " أضف صورة جديدة "}}</Link> </PrimaryButton>
+        <div class="container grid grid-cols-1 sm:grid-cols-3 " v-if="props.user.photos">
             <div v-for="photo in props.user.photos" :key="photo.id" class="grid gap-4 my-shadow p-5 rounded-xl it-ce relative" > 
                 <img :src="$page.props.appUrl+'storage/'+ photo.path" class="max-w-[100%] max-h-[200px]"/>
-                <PrimaryButton class="bg-red-600" @click="deleteFn(photo.id)">{{ isEn ? "Delete" : "حذف"}}</PrimaryButton>
+                <Link :href="route('photos.show',photo.id)">
+                    <PrimaryButton class="" >{{  $page.props.isEn ? "Show" : "اعرض"  }}</PrimaryButton>
+                </Link>
             </div> 
         </div>
+        <div class="container grid grid-cols-1 my-shadow p-5 rounded-xl it-ce" v-if="props.user.photos == false">{{ trans[lang]['No photos'] }}</div>
     </div>
 
 </template>

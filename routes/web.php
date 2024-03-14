@@ -4,6 +4,7 @@ use App\Http\Controllers\FollowController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WorkController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -42,16 +43,23 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::controller(UserController::class)->group(function(){
+        Route::get('/users', 'index')->name('user.index');
+        Route::get('/users/following', 'following')->name('user.following');
+        Route::get('/users/search', 'search')->name('user.search');
+        Route::get('/users/{user}', 'show')->name('user.show');
+        Route::post('/users/search', 'searchResult')->name('user.result');
+    });
+
+    Route::resource('photos', PhotoController::class)->only(['index', 'create', 'store','show','destroy']);
+
+    Route::resource('works', WorkController::class);
+
+    Route::post('/toggle-follow', FollowController::class)->name('follow.toggle');
 });
 
-Route::controller(UserController::class)->group(function(){
-    Route::get('/users', 'index')->name('user.index');
-    Route::get('/users/following', 'following')->name('user.following');
-    Route::get('/users/search', 'search')->name('user.search');
-    Route::get('/users/{user}', 'show')->name('user.show');
-    Route::post('/users/search', 'searchResult')->name('user.result');
-});
 
-Route::resource('photos', PhotoController::class)->only(['index', 'create', 'store','show','destroy']);
 
-Route::post('/toggle-follow', FollowController::class)->name('follow.toggle');
+
+

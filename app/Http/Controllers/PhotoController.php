@@ -12,7 +12,7 @@ class PhotoController extends Controller
      */
     public function index()
     {
-        //
+        return abort(404);
     }
 
     /**
@@ -45,7 +45,7 @@ class PhotoController extends Controller
      */
     public function show(Photo $photo)
     {
-        //
+        return inertia('Photo/Show',['photo' => $photo]);
     }
 
     /**
@@ -53,7 +53,7 @@ class PhotoController extends Controller
      */
     public function edit(Photo $photo)
     {
-        //
+        return abort(404);
     }
 
     /**
@@ -61,7 +61,7 @@ class PhotoController extends Controller
      */
     public function update(Request $request, Photo $photo)
     {
-        //
+        return abort(404);
     }
 
     /**
@@ -69,11 +69,12 @@ class PhotoController extends Controller
      */
     public function destroy(Photo $photo)
     {
+        abort_if($photo->user_id != auth()->id(), 403);
         $filePath = 'storage/' . $photo->path; 
         if(file_exists($filePath)){
             unlink($filePath);
         }
         $photo->delete();
-        return redirect()->back()->with('success', __('Deleted Successfully'));
+        return redirect()->route('user.show',auth()->id())->with('success', __('Deleted Successfully'));
     }
 }

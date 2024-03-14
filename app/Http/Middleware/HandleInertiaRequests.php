@@ -38,6 +38,7 @@ class HandleInertiaRequests extends Middleware
                 'check' => auth()->check(),
             ],
             'appUrl' => asset('/'),
+            'storageUrl' => asset('/storage'),
             'flash' => [
                 'success' => session('success'),
             ],

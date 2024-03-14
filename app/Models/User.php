@@ -58,7 +58,10 @@ class User extends Authenticatable
     }
     // photo model
     public function photos(){
-        return $this->hasMany(Photo::class);
+        return $this->hasMany(Photo::class,'user_id','id');
+    }
+    public function works(){
+        return $this->hasMany(Work::class,'user_id','id');
     }
 
 }

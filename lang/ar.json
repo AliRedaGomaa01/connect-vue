@@ -242,5 +242,12 @@
     "Your email address is unverified.": "لم يتم التحقق من عنوان بريدك الإلكتروني.",
     "Stored Successfully":"تم الإضافة بنجاح",
     "Deleted Successfully":"تم الحذف بنجاح",
+    "Book":"كتاب",
+    "Article":"مقالة",
+    "Course":"دورة",
+    "Blog":"مدونة",
+    "Other":"أخرى",
+    "":"",
+    "":"",
     "":""
 }
