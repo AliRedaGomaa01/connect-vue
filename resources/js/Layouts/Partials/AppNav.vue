@@ -24,9 +24,9 @@ watchEffect(() => {
 </script>
 <template>
     <!-- main nav -->
-    <div class="w-full py-4 grid grid-cols-2  it-ce shadow-[0px_3px_6px_0px_rgb(0,0,0,0.1)] text-center" :class="!isAuthenticated ? 'sm:grid-cols-4':'sm:grid-cols-5' ">
+    <div class="w-full py-4 grid grid-cols-2 sm:grid-cols-4  it-ce shadow-[0px_3px_6px_0px_rgb(0,0,0,0.1)] text-center">
         <Link :href="langRoute" class="nav-item" :preserve-scroll="true" :preserve-state="true" >{{ isEn ? "عربي" : "English"  }}</Link>
-        <Link :href="route('landing')" class="nav-item" :class="currentRouteName == 'landing' ? 'active' : ''" >{{ isEn ? "Home" : "الرئيسية" }}</Link>
+        <Link :href="route('landing')" class="nav-item" :class="currentRouteName == 'landing' ? 'active' : ''" v-if="!isAuthenticated">{{ isEn ? "Home" : "الرئيسية" }}</Link>
         <Link :href="route('login')" class="nav-item" :class="currentRouteName == 'login' ? 'active' : ''" v-if="!isAuthenticated">{{ isEn ? "Login" : "تسجيل الدخول"  }}</Link>
         <Link :href="route('register')" class="nav-item" :class="currentRouteName == 'register' ? 'active' : ''" v-if="!isAuthenticated">{{ isEn ?  "Register" : "تسجيل جديد" }}</Link>
         <Link :href="route('dashboard')" class="nav-item" :class="currentRouteName == 'dashboard' ? 'active' : ''" v-if="isAuthenticated">{{ isEn ? "Dashboard" : "الداشبورد"  }}</Link>
@@ -54,3 +54,4 @@ watchEffect(() => {
     </div>
 
 </template>
+
