@@ -65,6 +65,8 @@ class WorkController extends Controller
      */
     public function edit(Work $work)
     {
+        $id = $work->user_id;
+        abort_if(!auth()->user()->can('isOwner', $id), 403);
         return inertia('Work/Edit', [
             'work' => $work,
             'types' => WorkTypesEnum::toArray(),
@@ -76,6 +78,8 @@ class WorkController extends Controller
      */
     public function update(Request $request, Work $work)
     {
+        $id = $work->user_id;
+        abort_if(!auth()->user()->can('isOwner', $id), 403);
         $types= implode(',',array_keys(WorkTypesEnum::toArray())); 
         $validated = $request->validate([
             'type' => ['required',"in:{$types}",'string','max:255'],
@@ -94,6 +98,8 @@ class WorkController extends Controller
      */
     public function destroy(Work $work)
     {
+        $id = $work->user_id;
+        abort_if(!auth()->user()->can('isOwner', $id), 403);
         $work->delete();
         return redirect()->route('user.show',auth()->id())->with('success', __('Deleted Successfully'));
     }

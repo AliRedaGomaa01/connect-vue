@@ -25,15 +25,7 @@ use App\Http\Controllers\ProfileController;
 require __DIR__.'/auth.php';
 
 Route::get('/', function () {
-    return Inertia::render('Unused/MainRoutes', [
-        'routes' => [
-            ['name' => 'login', 'path' => route('login')],
-            ['name' => 'register', 'path' => route('register')], 
-            ['name' => 'dashboard', 'path' => route('dashboard')],
-            ['name' => 'profile', 'path' => route('profile.edit')],
-            ['name' => 'users', 'path' => route('user.index')],
-        ],
-    ]);
+    return inertia('Landing' );
 })->name('landing');
 
 Route::get('/dashboard', function () {
@@ -60,6 +52,19 @@ Route::middleware('auth')->group(function () {
     Route::post('/toggle-follow', FollowController::class)->name('follow.toggle');
     Route::post('/toggle-like', LikeController::class)->name('like.toggle');
 });
+
+
+// Route::get('/', function () {
+    //     return Inertia::render('Unused/MainRoutes', [
+    //         'routes' => [
+    //             ['name' => 'login', 'path' => route('login')],
+    //             ['name' => 'register', 'path' => route('register')], 
+    //             ['name' => 'dashboard', 'path' => route('dashboard')],
+    //             ['name' => 'profile', 'path' => route('profile.edit')],
+    //             ['name' => 'users', 'path' => route('user.index')],
+    //         ],
+    //     ]);
+    // })->name('landing');
 
 
 

@@ -71,7 +71,8 @@ class PhotoController extends Controller
      */
     public function destroy(Photo $photo)
     {
-        abort_if($photo->user_id != auth()->id(), 403);
+        $id = $photo->user_id;
+        abort_if(!auth()->user()->can('isOwner', $id), 403);
         $filePath = 'storage/' . $photo->path; 
         if(file_exists($filePath)){
             unlink($filePath);
