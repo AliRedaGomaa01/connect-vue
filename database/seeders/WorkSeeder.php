@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
+use App\Models\Work;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -12,6 +14,18 @@ class WorkSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        $works = [];
+        foreach( User::pluck('id')->toArray() as $user_id){
+            foreach( [1,2] as $iteration){
+                $works[] = [
+                    'user_id' => $user_id,
+                    'category' => 'test',
+                    'title' => 'test',
+                    'description' => 'test',
+                    'url' => 'https://aligh.net',
+                ];
+            }
+        }
+        Work::insert($works);
     }
 }

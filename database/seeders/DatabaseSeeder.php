@@ -21,33 +21,35 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        // $users = [
-        //     [
-        //         'name' => 'a',
-        //         'email' => 'a@a.a',
-        //         'password' => bcrypt('a')
-        //         ],
-        //         [
-        //         'name' => 'b',
-        //         'email' => 'b@b.b',
-        //         'password' => bcrypt('b')
-        //         ],
-        //         [
-        //         'name' => 'c',
-        //         'email' => 'c@c.c',
-        //         'password' => bcrypt('c')
-        //         ],
-        //         [
-        //         'name' => 'd',
-        //         'email' => 'd@d.d',
-        //         'password' => bcrypt('d')
-        //         ],
-        // ];
+        $users = [
+            [
+                'name' => 'a',
+                'email' => 'a@a.a',
+                'password' => bcrypt('a')
+                ],
+                [
+                'name' => 'b',
+                'email' => 'b@b.b',
+                'password' => bcrypt('b')
+                ],
+                [
+                'name' => 'c',
+                'email' => 'c@c.c',
+                'password' => bcrypt('c')
+                ],
+                [
+                'name' => 'd',
+                'email' => 'd@d.d',
+                'password' => bcrypt('d')
+                ],
+        ];
         
-        // foreach($users as $user){
-        //     \App\Models\User::create(
-        //         $user
-        //     );
-        // }
+        foreach($users as $user){
+            \App\Models\User::create(
+                $user
+            );
+        }
+
+        $this->call(WorkSeeder::class);
     }
 }
