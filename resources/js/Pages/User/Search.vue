@@ -32,9 +32,9 @@ let submit = () => {
     <Head :title="isEn ? 'Users' : 'المستخدمين'"/>
     <form @submit.prevent="submit()" >
         <div class="container">
-            <div class="grid gap-5 m-5 p-5 my-shadow rounded-xl center-container">
+            <div class="grid gap-5 p-5 my-shadow rounded-xl center-container">
                 <label for="search">{{isEn ? 'Search' : 'بحث'}}</label>
-                <input list="searching" type="text" v-model="form.search" id="search" class="" @focus="showUsers = false">
+                <input list="searching" type="text" v-model="form.search" id="search" class="w-full" @focus="showUsers = false">
                 <datalist id="searching">
                     <option v-for="(email, name) in searchable"  :key="email" :value="email" >{{name}}</option>
                 </datalist>  
