@@ -46,7 +46,7 @@ let props = defineProps({});
             ? 'You can visit my website to get all info about me.' 
             : 'يمكنك زيارة موقعي للحصول على كافة المعلومات عني.' }}
         </p>
-        <a href="https://aligh.net">{{ isEn ? 'My personal Website Url' : 'رابط موقعي الشخصي' }}</a>
+        <a href="https://aly-h.com">{{ isEn ? 'My personal Website Url' : 'رابط موقعي الشخصي' }}</a>
         <a href="https://github.com/AliRedaGomaa01/connect-vue">{{ isEn ? 'Project github URL' : 'رابط المشروع على GitHub' }}</a>
     </div>
 
