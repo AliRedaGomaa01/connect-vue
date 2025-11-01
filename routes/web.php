@@ -24,10 +24,10 @@ use App\Http\Controllers\ProfileController;
 
 require __DIR__.'/auth.php';
 
-Route::get('artisan-storage-link' , function () {
-  \Illuminate\Support\Facades\Artisan::call('storage:link');
-  return "done";
-});
+// Route::get('artisan-storage-link' , function () {
+//   \Illuminate\Support\Facades\Artisan::call('storage:link');
+//   return "done";
+// });
 
 Route::get('/', function () {
     return inertia('Landing' );
