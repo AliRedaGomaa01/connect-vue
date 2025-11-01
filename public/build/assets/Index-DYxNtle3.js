@@ -1,0 +1,1 @@
+import{c as a,o as n,a as o,u as e,Q as r,Z as s}from"./app-CyNru-HL.js";const _={__name:"Index",props:{},setup(p){let t=a(()=>r().props.lang=="en");return(c,l)=>(n(),o(e(s),{title:(e(t),"")},null,8,["title"]))}};export{_ as default};

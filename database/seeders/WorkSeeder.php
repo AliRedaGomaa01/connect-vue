@@ -22,7 +22,7 @@ class WorkSeeder extends Seeder
                     'category' => 'test',
                     'title' => 'test',
                     'description' => 'test',
-                    'url' => 'https://aly-h.com',
+                    'url' => 'https://alyhsn.com',
                 ];
             }
         }
